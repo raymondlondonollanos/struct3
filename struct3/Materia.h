@@ -2,6 +2,10 @@
 #ifndef MATERIA_H
 #define MATERIA_H
 
+#include <string>
+#include <optional>//std::optinal
+#include <iostream>
+
 namespace materia
 {
 	struct Materia
@@ -20,10 +24,54 @@ namespace materia
 
 		//Funcionalidades del struct 
 
+		void set_notas_matematicas();
 
+		void set_notas_sociales();
+
+		void set_notas_espanhol_mate();
+
+		void set_num_notas_sociales();
+
+		void set_num_notas_espanhol();
+
+		std::optional<double> validation_notas_double();
+
+		std::optional<int> validation_cantidad_notas();
+
+		int input_num_notas();
 
 	};
 	
+	//definicion de las funciones declarada en el espacio de nombres 
+	//del struct
+	std::optional<int> Materia::validation_cantidad_notas()
+	{
+		int num_notas{};
+
+		std::optional<int> num;
+
+		//Se almacena en una variable local y temporal
+		std::cin >> num_notas;
+
+		//Validacion de entradas extranas no completamente
+		if (std::cin.good())
+		{
+			num = num_notas;
+
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+			return num;
+		}
+		else
+		{
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+			return std::nullopt;
+		}
+
+
+	}
+
 }
 
 #endif // !MATERIA_H
