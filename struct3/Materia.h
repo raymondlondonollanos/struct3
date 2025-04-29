@@ -64,6 +64,9 @@ namespace materia
 		}
 		else
 		{
+			//Importante limpiar siempre el estado de error para que compile correctametne
+			std::cin.clear();
+
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 			return std::nullopt;
@@ -72,6 +75,71 @@ namespace materia
 
 	}
 
+	int Materia::input_num_notas()
+	{
+		std::optional<int> cant_notas;
+
+		bool validador{ true };
+
+		int num_notas{};
+
+
+		while (validador)
+		{
+
+			cant_notas = validation_cantidad_notas();
+
+			if (!cant_notas)
+			{
+
+				std::cout << "\nIngresaste datos erroneos. ";
+
+				std::cout << "\nIngresa nuevamente la cantidad de notas: ";
+
+			}
+			else
+			{
+
+				m_capa_v_ma = *cant_notas;
+
+				validador = false;
+
+			}
+
+		}
+
+		return m_capa_v_ma;
+	}
+
+	void Materia::set_notas_espanhol_mate()
+	{
+
+		std::cout << "Digite el numero de notas a ingresar en matematicas: ";
+
+		m_capa_v_ma = input_num_notas();
+
+	}
+
+	void Materia::set_num_notas_sociales()
+	{
+
+		std::cout << "Digite el numero de notas a ingresar en matematicas: ";
+
+		m_capa_v_so = input_num_notas();
+
+	}
+
+	void Materia::set_num_notas_espanhol()
+	{
+
+		std::cout << "Digite el numero de notas a ingresar en espanhol: ";
+
+		m_capa_v_es = input_num_notas();
+
+	}
+
+	
+	
 }
 
 #endif // !MATERIA_H
